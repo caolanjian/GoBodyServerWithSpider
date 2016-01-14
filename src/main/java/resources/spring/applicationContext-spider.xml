@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context  
+    http://www.springframework.org/schema/context/spring-context-3.1.xsd  
+    http://www.springframework.org/schema/aop  
+    http://www.springframework.org/schema/aop/spring-aop-3.1.xsd  
+    http://www.springframework.org/schema/tx  
+    http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+    
+    <bean id="haoKooFilter" class="com.clj.spider.component.HaoKooFilter">
+    	<property name="subjectFilter">
+    		<map>
+    			<entry key="健身">
+    				<array>
+    					<value>vv健身</value>
+    					<value>肌肉网</value>
+    					<value>Lifehack</value>
+    					<value>肌肉男训练营</value>
+    					<value>增肌、减脂分享一刻</value>
+    					<value>囚徒健身</value>
+    					<value>人鱼线和马甲线</value>
+    					<value>人鱼线vs马甲线</value>
+    					<value>爱健身</value>
+    					<value>浩沙健身</value>
+    					<value>GV钙片</value>
+    					<value>健身训练营</value>
+    					<value>小腹基</value>
+    					<value>运动健身gif图</value>
+    					<value>LEE健身</value>
+    					<value>健身114</value>
+    					<value>一兆韦德健身</value>
+    					<value>莫比健身</value>
+    					<value>CSPN</value>
+    					<value>型男健身学院</value>
+    					<value>动起来App</value>
+    					<value>虎扑健身</value>
+    					<value>火辣健身</value>
+    					<value>陈静健美城</value>
+    					<value>硬派健身</value>
+    					<value>肌肉训练营</value>
+    					<value>肌肉工程网</value>
+    					<value>肌肉工程师</value>
+    					<value>男人装</value>
+    					<value>Keep</value>
+    					<value>型男健身学院</value>
+    					<value>腹肌撕裂者</value>
+    					<value>慕尚健身</value>
+    				</array>
+    			</entry>
+    			
+    			<entry key="跑步">
+    				<array>
+    					<value>增肌、减脂分享一刻</value>
+						<value>人鱼线和马甲线</value>
+						<value>人鱼线vs马甲线</value>
+						<value>跑步指南</value>
+						<value>跑步心情</value>
+						<value>瘦瘦</value>
+						<value>跑步</value>
+						<value>帮你瘦到90斤</value>
+						<value>小腹基</value>
+						<value>减肥励志图</value>
+						<value>跑步吧</value>
+						<value>跑者世界</value>
+						<value>城市悦跑</value>
+						<value>私人减肥师</value>
+    				</array>
+    			</entry>
+    			
+    			<entry key="瑜伽">
+    				<array>
+    					<value>瘦瘦</value>
+						<value>帮你瘦到90斤</value>
+						<value>练瑜伽</value>
+						<value>瑜伽微社区</value>
+						<value>瑜伽导师营</value>
+    				</array>
+    			</entry>
+    			
+    			<entry key="囚徒">
+    				<array>
+    					<value>囚徒健身</value>
+    				</array>
+    			</entry>
+    			
+    			<entry key="圈内">
+    				<array>
+    					<value>Lifehack</value>
+    					<value>人鱼线和马甲线</value>
+    					<value>人鱼线vs马甲线</value>
+    					<value>GV钙片</value>
+    					<value>型男健身学院</value>
+    					<value>CSPN</value>
+    					<value>男人装</value>
+    				</array>
+    			</entry>
+    			
+    			<entry key="体育">
+    				<array>
+    					<value>虎扑体育</value>
+    					<value>CCTV5体育新闻</value>
+    					<value>NBA篮球之家</value>
+    					<value>体坛周报</value>
+    					<value>上海东方体育日报</value>
+    					<value>U体育</value>
+    					<value>乐视体育</value>
+    					<value>五星体育赛事互动</value>
+    					<value>新闻晨报体育</value>
+    					<value>体育BANK</value>
+    					<value>U体育</value>
+    				</array>
+    			</entry>
+    			
+    			<entry key="格斗">
+    				<array>
+    					<value>格斗迷</value>
+    					<value>拳击周刊</value>
+    					<value>WWE美国职业摔角</value>
+    					<value>UFC终极格斗锦标赛</value>
+    					<value>教你格斗防身</value>
+    					<value>飞龙精武会馆</value>
+    				</array>
+    			</entry>
+    			
+    			<entry key="训练">
+    				<array>
+    					<value>super health</value>
+    					<value>镁女罩我去战斗</value>
+    					<value>运动健身gif图</value>
+    				</array>
+    			</entry>
+    			
+    			<entry key="减肥">
+    				<array>
+    					<value>健康运动瘦身指南</value>
+    					<value>瘦瘦</value>
+    					<value>帮你瘦到90斤</value>
+    					<value>减肥励志图</value>
+    					<value>小腹基</value>
+    					<value>人鱼线和马甲线</value>
+    				</array>
+    			</entry>
+    			
+    			<entry key="极限">
+    				<array>
+    					<value></value>
+    				</array>
+    			</entry>
+    		</map>
+    	</property>
+    	
+    	<property name="authorsInitUrl">
+    		<map>
+    			<entry key="vv健身" value="http://www.haokoo.com/user/15355/" />
+    			<entry key="肌肉网" value="http://www.haokoo.com/user/5787/" />
+    			<entry key="Lifehack" value="http://www.haokoo.com/user/5784/" />
+    			<entry key="格斗迷" value="http://www.haokoo.com/user/7230/" />
+    			<entry key="肌肉男训练营" value="http://www.haokoo.com/user/8512/" />
+    			<entry key="增肌、减脂分享一刻" value="http://www.haokoo.com/user/5785/" />
+    			<entry key="囚徒健身" value="http://www.haokoo.com/user/10700/" />
+    			<entry key="人鱼线和马甲线" value="" />
+    			<entry key="镁女罩我去战斗" value="http://www.haokoo.com/user/17753/" />
+    			<entry key="人鱼线vs马甲线" value="http://www.haokoo.com/user/5099/" />
+    			<entry key="爱健身" value="http://www.haokoo.com/user/7413/" />
+    			<entry key="跑步指南" value="http://www.haokoo.com/user/179/" />
+    			<entry key="跑步心情" value="http://www.haokoo.com/user/5791/" />
+    			<entry key="浩沙健身" value="" />
+    			<entry key="瘦瘦" value="http://www.haokoo.com/user/4646/" />
+    			<entry key="跑步" value="http://www.haokoo.com/user/14645/" />
+    			<entry key="GV钙片" value="http://www.haokoo.com/user/13792/" />
+    			<entry key="帮你瘦到90斤" value="http://www.haokoo.com/user/5788/" />
+    			<entry key="健身训练营" value="http://www.haokoo.com/user/10711/" />
+    			<entry key="肌肉男训练营" value="http://www.haokoo.com/user/8512/" />
+    			<entry key="小腹基" value="http://www.haokoo.com/user/4083/" />
+    			<entry key="运动健身gif图" value="" />
+    			<entry key="super health" value="http://www.haokoo.com/user/17394/" />
+    			<entry key="减肥励志图" value="" />
+    			<entry key="LEE健身" value="" />
+    			<entry key="健身114" value="http://www.haokoo.com/user/10708/" />
+    			<entry key="一兆韦德健身" value="http://www.haokoo.com/user/10715/" />
+    			<entry key="跑步吧" value="" />
+    			<entry key="莫比健身" value="http://www.haokoo.com/user/14523/" />
+    			<entry key="CSPN" value="http://www.haokoo.com/user/7067/" />
+    			<entry key="跑者世界" value="http://www.haokoo.com/user/14632/" />
+    			<entry key="型男健身学院" value="http://www.haokoo.com/else/3203560.html" />
+    			<entry key="动起来App" value="" />
+    			<entry key="虎扑健身" value="http://www.haokoo.com/user/12571/" />
+    			<entry key="虎扑体育" value="http://www.haokoo.com/user/77/" />
+    			<entry key="火辣健身" value="" />
+    			<entry key="陈静健美城" value="http://www.haokoo.com/user/9656/" />
+    			<entry key="硬派健身" value="http://www.haokoo.com/user/6912/" />
+    			<entry key="练瑜伽" value="http://www.haokoo.com/user/6519/" />
+    			<entry key="瑜伽导师营" value="http://www.haokoo.com/user/13885/" />
+    			<entry key="城市悦跑" value="" />
+    			<entry key="肌肉训练营" value="" />
+    			<entry key="瑜伽微社区" value="" />
+    			<entry key="肌肉工程网" value="" />
+    			<entry key="肌肉工程师" value="http://www.haokoo.com/user/18450/" />
+    			<entry key="私人减肥师" value="" />
+    			<entry key="健身迷" value="" />
+    			<entry key="男人装" value="http://www.haokoo.com/user/4201/" />
+    			<entry key="Keep" value="http://www.haokoo.com/user/17442/" />
+    			<entry key="型男健身学院" value="http://www.haokoo.com/user/14627/" />
+    			<entry key="乐视体育" value="http://www.haokoo.com/user/3703/" />
+    			<entry key="腹肌撕裂者" value="http://www.haokoo.com/user/17403/" />
+    			<entry key="五星体育赛事互动" value="http://www.haokoo.com/user/5325/" />
+    			<entry key="新闻晨报体育" value="" />
+    			<entry key="拳击周刊" value="http://www.haokoo.com/user/14630/" />
+    			<entry key="慕尚健身" value="http://www.haokoo.com/user/13837/" />
+    			<entry key="CCTV5体育新闻" value="" />
+    			<entry key="NBA篮球之家" value="http://www.haokoo.com/user/4458/" />
+    			<entry key="健康运动瘦身指南" value="" />
+    			<entry key="体育BANK" value="http://www.haokoo.com/user/10685/" />
+    			<entry key="体坛周报" value="http://www.haokoo.com/user/6482/" />
+    			<entry key="上海东方体育日报" value="" />
+    			<entry key="U体育" value="http://www.haokoo.com/user/3705/" />
+    			<entry key="WWE美国职业摔角" value="http://www.haokoo.com/user/10062/" />
+    			<entry key="教你格斗防身" value="" />
+    			<entry key="UFC终极格斗锦标赛" value="" />
+    			<entry key="飞龙精武会馆" value="http://www.haokoo.com/user/5944/" />
+    			<entry key="" value="" />
+    			<entry key="" value="" />
+    		</map>
+    	</property>
+
+    </bean>
+			
+</beans>

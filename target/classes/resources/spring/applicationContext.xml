@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context  
+    http://www.springframework.org/schema/context/spring-context-3.1.xsd  
+    http://www.springframework.org/schema/aop  
+    http://www.springframework.org/schema/aop/spring-aop-3.1.xsd  
+    http://www.springframework.org/schema/tx  
+    http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+    
+
+	<context:annotation-config />
+	
+	<context:component-scan base-package="com.clj" />
+	
+	<context:property-placeholder location="classpath:resources/hibernate/hibernate.properties" ignore-unresolvable="true"/>
+    <context:property-placeholder location="classpath:resources/webResource/resources.properties" ignore-unresolvable="true"/>
+    
+    <import resource="classpath:resources/spring/applicationContext-persistence.xml" />
+    <import resource="classpath:resources/spring/applicationContext-spider.xml" />
+    
+    <bean id="resources" class="com.clj.resources.Resources">
+    	<property name="APACHE_HOME_SERVER_IP" value="${APACHE_HOME_SERVER_IP}"/>
+    	<property name="APACHE_IMG_SERVER_IP" value="${APACHE_IMG_SERVER_IP}"/>
+    	<property name="MYSQL_CONNECTION_URL" value="${MYSQL_CONNECTION_URL}"/>
+    	<property name="IMG_URI_HEADER" value="${IMG_URI_HEADER}"/>
+    	<property name="APACHE_RESOURCE_PATH" value="${APACHE_RESOURCE_PATH}"/>
+    	<property name="TOMCAT_SERVER1_IP" value="${TOMCAT_SERVER1_IP}"/>
+    	<property name="TOMCAT_SERVER2_IP" value="${TOMCAT_SERVER2_IP}"/>
+    	<property name="TOMCAT_SERVER_APP_NAME" value="${TOMCAT_SERVER_APP_NAME}"/>
+    	<property name="IMG_DOWNLOAD_PATH" value="${IMG_DOWNLOAD_PATH}"/>
+    	<property name="IMG_SERVER_URL_HEADER" value="${IMG_SERVER_URL_HEADER}"/>
+    	<property name="channelIndexMap">
+    		<map>
+    			<entry key="fitness" value="健身"/>
+    			<entry key="running" value="跑步"/>
+    			<entry key="yoga" value="瑜伽"/>
+    			<entry key="prisoner" value="囚徒"/>
+    			<entry key="in" value="圈内"/>
+    			<entry key="sport" value="体育"/>
+    			<entry key="fight" value="格斗"/>
+    			<entry key="trainning" value="训练"/>
+    			<entry key="loseweight" value="减肥"/>
+    			<entry key="extreme" value="极限"/>
+    		</map>
+    	</property>
+    </bean>
+    
+    <bean id="testBean" class="com.clj.test.TestBean" >
+    	<property name="name" value="caolanjian" />
+    </bean>
+    
+</beans>

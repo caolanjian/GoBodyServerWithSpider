@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	
+	<package name="clj" extends="struts-default" namespace="/">
+		<interceptors>
+			
+			<interceptor-stack name="InterceptorStack">
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+	
+		<default-interceptor-ref name="InterceptorStack" />
+		
+		<global-results>
+			<result name="frontPage">/index.jsp</result>
+		</global-results>
+		
+		<action name="Resource" class="com.clj.web.ResourceAction">
+			<result name="success">/WEB-INF/resourcePage.jsp</result>
+			<result name="failed">/index.jsp</result>
+			<interceptor-ref name="InterceptorStack"></interceptor-ref>
+		</action>
+		
+		<action name="List" class="com.clj.web.ListAction">
+			<result name="success">/WEB-INF/resourceList.jsp</result>
+			<result name="successXml">/WEB-INF/resourceListXml.jsp</result>
+			<result name="failed">/index.jsp</result>
+			<interceptor-ref name="InterceptorStack"></interceptor-ref>
+		</action>
+		
+	</package>
+</struts>    

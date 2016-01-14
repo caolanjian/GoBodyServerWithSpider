@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context  
+    http://www.springframework.org/schema/context/spring-context-3.1.xsd  
+    http://www.springframework.org/schema/aop  
+    http://www.springframework.org/schema/aop/spring-aop-3.1.xsd  
+    http://www.springframework.org/schema/tx  
+    http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+    
+    <!-- Configure the DataSource -->
+	<bean id="dataSource"
+			class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${hibernate.connection.driver_class}" />
+		<property name="jdbcUrl" value="${hibernate.connection.url}" />
+		<property name="user" value="${hibernate.connection.username}" /> 
+        <property name="password" value="${hibernate.connection.password}" /> 
+        <property name="maxPoolSize" value="${hibernate.connection.maxPoolSize}" />
+        <property name="minPoolSize" value="${hibernate.connection.minPoolSize}" />
+        <property name="initialPoolSize" value="${hibernate.connection.initialPoolSize}" />
+	    <property name="maxIdleTime" value="${hibernate.connection.maxIdleTime}"/>  
+	    <property name="acquireIncrement" value="${hibernate.connection.acquireIncrement}"/>   
+	    <property name="idleConnectionTestPeriod" value="${hibernate.connection.idleConnectionTestPeriod}"/>
+	</bean>
+	
+	<bean id="sessionFactory"
+		 class="org.springframework.orm.hibernate3.LocalSessionFactoryBean" >
+		 <property name="dataSource" ref="dataSource" />
+<!-- 		 <property name="packagesToScan" value="com.clj.domain"/> -->
+		
+		 <property name="mappingResources">
+		 	<list>
+		 		<value>com/clj/domain/Article.hbm.xml</value>
+				<value>com/clj/domain/Articlecontent.hbm.xml</value>
+				<value>com/clj/domain/Keywords.hbm.xml</value>
+				<value>com/clj/domain/Historyurl.hbm.xml</value>
+				<value>com/clj/domain/Subject.hbm.xml</value>
+				<value>com/clj/domain/Articlesubject.hbm.xml</value>
+				<value>com/clj/domain/Userfavorite.hbm.xml</value>
+				<value>com/clj/domain/Users.hbm.xml</value>
+				<value>com/clj/domain/Usercomment.hbm.xml</value>
+		 	</list>
+		 </property>
+		 
+		 <property name="hibernateProperties">
+		 	<props>
+		 		<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+		 	</props>
+		 </property>
+	
+	</bean>
+	
+	<!-- 配置使用基于Hibernate的事务管理器 -->  
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">  
+	    <!-- spring需要通过sessionFactory来开启事务 -->  
+	    <property name="sessionFactory" ref="sessionFactory"/>  
+	</bean> 
+	
+	<!--Spring中的事物配置声明.1 基于xml配置方式    2.基于注解来声明那些类-->  
+	<tx:annotation-driven transaction-manager="txManager"/> 
+	
+</beans>	
+	
+	
+	
