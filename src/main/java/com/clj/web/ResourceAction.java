@@ -48,7 +48,7 @@ public class ResourceAction {
 			{
 				if(line.indexOf("<img>")!=-1)
 				{
-					String url = resources.getAPACHE_HOME_SERVER_IP() + 
+					String url = resources.getAPACHE_IMG_SERVER_IP() + 
 							line.substring(line.indexOf("<img>") + "<img>".length(), line.indexOf("</img>"));
 					ContentLine cl = new ContentLine("img", 
 													url.substring(url.lastIndexOf(".")+1),

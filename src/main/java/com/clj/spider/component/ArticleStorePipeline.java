@@ -159,12 +159,7 @@ public class ArticleStorePipeline implements Pipeline{
 		//2. create a id, create a folder to store img for article
 		String id = UUID.randomUUID().toString();
 		articleInDB.setArticleid(id);
-		
-		String imgSubFolder = "/" + id;
-		String articleImgFolder = path + imgSubFolder;
-		File f = new File(articleImgFolder);
-		f.mkdir();
-	
+				
 		//4. generate articleCreateTime
 		if(articleCreateTime != null)
 		{
@@ -200,32 +195,28 @@ public class ArticleStorePipeline implements Pipeline{
 					
 					int downloadResult = -1;
 					//2. ��ʼ�������ļ����resize�ļ���
-					String suffix = getSuffixFromUrl(imgUrl);
-					String lineImgFileName = UUID.randomUUID().toString();
-					String imageName = lineImgFileName + "." + suffix;
-					String imagePath = articleImgFolder + "/" + imageName; 
+					String imageName = UUID.randomUUID().toString() + "." + getSuffixFromUrl(imgUrl);
+					String imagePath = path + "/" + imageName; 
 					
 					//3. ����ͼƬ
 					downloadResult = DownloaderUtil.downloadFile(imgUrl, 
 														imagePath);
 					if(downloadResult != -1 && checkImageValid(imagePath))
 					{
-						String finalImageName = imageName;
-						
 						/*set img sever url*/
-						String urlPath = imgSubFolder + "/" + finalImageName;
-						contentString.append("<img>" + imgUrlHeader + urlPath + "</img>" + "\n");
+						String urlPath = imgUrlHeader + "/" + imageName;
+						contentString.append("<img>" + urlPath + "</img>" + "\n");
 						if("".equals(img1))
 						{
-							img1 = imgUrlHeader + urlPath;
+							img1 = urlPath;
 						}
 						else if("".equals(img2))
 						{
-							img2 = imgUrlHeader + urlPath;
+							img2 = urlPath;
 						}
 						else if("".equals(img3))
 						{
-							img3 = imgUrlHeader + urlPath;
+							img3 = urlPath;
 						}
 					}
 				}

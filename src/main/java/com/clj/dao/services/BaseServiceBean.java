@@ -17,8 +17,8 @@ import com.clj.dao.interfaces.BaseServiceInter;
 /**
  * 
  * @author a
- * <tx:annoation-driven />只会查找和它在相同的应用上下文件中定义的bean上面的@Transactional注解
- * 如果不先将BaseServiceBean交给Spring管理，则BaseServiceBean无法使用事物，也无法被Spring注入Session
+ * <tx:annoation-driven />只锟斤拷锟斤拷液锟斤拷锟斤拷锟斤拷锟酵拷锟接︼拷锟斤拷锟斤拷锟斤拷募锟斤拷卸锟斤拷锟斤拷bean锟斤拷锟斤拷锟紷Transactional注锟斤拷
+ * 锟斤拷锟斤拷锟斤拷冉锟紹aseServiceBean锟斤拷锟斤拷Spring锟斤拷锟斤拷锟斤拷BaseServiceBean锟睫凤拷使锟斤拷锟斤拷锟斤，也锟睫凤拷锟斤拷Spring注锟斤拷Session
  */
 
 @Service
@@ -32,21 +32,21 @@ public class BaseServiceBean implements BaseServiceInter {
 	}*/
 	
 	@Override
-	@Transactional(propagation=Propagation.SUPPORTS , readOnly=false)
+	@Transactional(propagation=Propagation.REQUIRED , readOnly=false)
 	public void addObject(Object obj) {
 		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().persist(obj);;
+		sessionFactory.getCurrentSession().persist(obj);
 	}
 
 	@Override
-	@Transactional(propagation=Propagation.SUPPORTS , readOnly=false)
+	@Transactional(propagation=Propagation.REQUIRED , readOnly=false)
 	public void deleteObject(Object obj) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().delete(obj);;
 	}
 
 	@Override
-	@Transactional(propagation=Propagation.SUPPORTS , readOnly=false)
+	@Transactional(propagation=Propagation.REQUIRED , readOnly=false)
 	public void updateObject(Object obj) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().merge(obj);

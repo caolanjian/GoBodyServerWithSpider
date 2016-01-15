@@ -77,7 +77,7 @@ public class HooKooPageProcessor implements PageProcessor{
 		{
 			String url = page.getUrl().toString();
 			String titleFull = html.xpath("//title/text()").toString(); 
-			String author = titleFull.substring(titleFull.indexOf("_")+1, titleFull.indexOf("΢�Ź���"));
+			String author = titleFull.substring(titleFull.indexOf("_")+1, titleFull.indexOf("微信公众"));
 			String keywords = html.xpath("//meta[@name='keywords']/@content").toString();
 			
 			List<Historyurl> historyUrls = (List<Historyurl>)historyurlService.queryBySql("from Historyurl where url=?", url);

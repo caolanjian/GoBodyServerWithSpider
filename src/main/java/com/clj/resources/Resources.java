@@ -12,8 +12,6 @@ public class Resources {
 	
 	public String APACHE_IMG_SERVER_IP;
 	
-	public String MYSQL_CONNECTION_URL;
-	
 	public String IMG_URI_HEADER;
 	
 	public String APACHE_RESOURCE_PATH;
@@ -46,14 +44,6 @@ public class Resources {
 
 	public void setAPACHE_IMG_SERVER_IP(String aPACHE_IMG_SERVER_IP) {
 		APACHE_IMG_SERVER_IP = aPACHE_IMG_SERVER_IP;
-	}
-
-	public String getMYSQL_CONNECTION_URL() {
-		return MYSQL_CONNECTION_URL;
-	}
-
-	public void setMYSQL_CONNECTION_URL(String mYSQL_CONNECTION_URL) {
-		MYSQL_CONNECTION_URL = mYSQL_CONNECTION_URL;
 	}
 
 	public String getIMG_URI_HEADER() {

@@ -109,5 +109,16 @@
 		<servlet-name>Admin</servlet-name>
 		<url-pattern>/admin.html</url-pattern>
 	</servlet-mapping>
-  
+	
+	<!-- Spider Servlet -->
+	<servlet>
+		<servlet-name>Spider</servlet-name>
+		<servlet-class>com.clj.web.servlet.SpiderServlet</servlet-class>
+		<init-param>
+		    <param-name>runSpider</param-name>
+		    <param-value>1</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
 </web-app>
