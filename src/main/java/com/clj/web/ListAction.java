@@ -52,19 +52,19 @@ public class ListAction {
 			
 			if(art.getImg1() != null && !art.getImg1().equals(""))
 			{
-				String imgUrl1 = resources.getAPACHE_HOME_SERVER_IP() + art.getImg1();
+				String imgUrl1 = resources.getAPACHE_IMG_SERVER_IP() + art.getImg1();
 				art.setImg1(imgUrl1);
 			}
 			
 			if(art.getImg2() != null && !art.getImg2().equals(""))
 			{
-				String imgUrl2 = resources.getAPACHE_HOME_SERVER_IP() + art.getImg2();
+				String imgUrl2 = resources.getAPACHE_IMG_SERVER_IP() + art.getImg2();
 				art.setImg2(imgUrl2);
 			}
 			
 			if(art.getImg3() != null && !art.getImg3().equals(""))
 			{
-				String imgUrl3 = resources.getAPACHE_HOME_SERVER_IP() + art.getImg3();
+				String imgUrl3 = resources.getAPACHE_IMG_SERVER_IP() + art.getImg3();
 				art.setImg3(imgUrl3);
 			}
 		}
@@ -107,19 +107,19 @@ public class ListAction {
 			
 			if(art.getImg1() != null && !art.getImg1().equals(""))
 			{
-				String imgUrl1 = resources.getAPACHE_HOME_SERVER_IP() + art.getImg1();
+				String imgUrl1 = resources.getAPACHE_IMG_SERVER_IP() + art.getImg1();
 				art.setImg1(imgUrl1);
 			}
 			
 			if(art.getImg2() != null && !art.getImg2().equals(""))
 			{
-				String imgUrl2 = resources.getAPACHE_HOME_SERVER_IP() + art.getImg2();
+				String imgUrl2 = resources.getAPACHE_IMG_SERVER_IP() + art.getImg2();
 				art.setImg2(imgUrl2);
 			}
 			
 			if(art.getImg3() != null && !art.getImg3().equals(""))
 			{
-				String imgUrl3 = resources.getAPACHE_HOME_SERVER_IP() + art.getImg3();
+				String imgUrl3 = resources.getAPACHE_IMG_SERVER_IP() + art.getImg3();
 				art.setImg3(imgUrl3);
 			}
 

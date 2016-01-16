@@ -92,16 +92,16 @@ alter table usercomment
       references article (id);      
 
       
-insert into subject values (1, '½¡Éí');
-insert into subject values (2, 'ÅÜ²½');
-insert into subject values (3, 'è¤Ù¤');
-insert into subject values (4, 'ÇôÍ½');
-insert into subject values (5, 'È¦ÄÚ');
-insert into subject values (6, 'ÌåÓı');
-insert into subject values (7, '¸ñ¶·');
-insert into subject values (8, 'ÑµÁ·');
-insert into subject values (9, '¼õ·Ê');
-insert into subject values (10, '¼«ÏŞ');
+insert into subject values (1, 'å¥èº«');
+insert into subject values (2, 'è·‘æ­¥');
+insert into subject values (3, 'ç‘œä¼½');
+insert into subject values (4, 'å›šå¾’');
+insert into subject values (5, 'åœˆå†…');
+insert into subject values (6, 'ä½“è‚²');
+insert into subject values (7, 'æ ¼æ–—');
+insert into subject values (8, 'è®­ç»ƒ');
+insert into subject values (9, 'ç˜¦èº«');
+insert into subject values (10, 'æé™');
 
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.0.102' IDENTIFIED BY '111111' WITH GRANT OPTION;
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.0.101' IDENTIFIED BY '111111' WITH GRANT OPTION;

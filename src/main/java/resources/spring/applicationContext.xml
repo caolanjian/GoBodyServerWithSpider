@@ -29,7 +29,6 @@
     <bean id="resources" class="com.clj.resources.Resources">
     	<property name="APACHE_HOME_SERVER_IP" value="${APACHE_HOME_SERVER_IP}"/>
     	<property name="APACHE_IMG_SERVER_IP" value="${APACHE_IMG_SERVER_IP}"/>
-    	<property name="MYSQL_CONNECTION_URL" value="${MYSQL_CONNECTION_URL}"/>
     	<property name="IMG_URI_HEADER" value="${IMG_URI_HEADER}"/>
     	<property name="APACHE_RESOURCE_PATH" value="${APACHE_RESOURCE_PATH}"/>
     	<property name="TOMCAT_SERVER1_IP" value="${TOMCAT_SERVER1_IP}"/>

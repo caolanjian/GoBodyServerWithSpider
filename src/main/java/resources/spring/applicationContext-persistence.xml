@@ -70,7 +70,7 @@
 	</bean> 
 	
 	<!--Spring中的事物配置声明.1 基于xml配置方式    2.基于注解来声明那些类-->  
-	<tx:annotation-driven transaction-manager="txManager"/> 
+    <tx:annotation-driven transaction-manager="txManager"/>
 	
 </beans>	
 	

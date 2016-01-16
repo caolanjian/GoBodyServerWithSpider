@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.aop.support.AopUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,9 +50,13 @@ public class ArticleServiceBean extends BaseServiceBean implements ArticleServic
 			for(Articlesubject subject : subjects)
 			{
 				subject.setArticle(article);
-				super.addObject(subject);
+				//super.addObject(subject);
 			}
 			super.addObject(article);
+			for(Articlesubject subject : subjects)
+			{
+				super.addObject(subject);
+			}
 
 	}
 
@@ -59,17 +64,21 @@ public class ArticleServiceBean extends BaseServiceBean implements ArticleServic
 	public void saveArticleAndContentAndSubjectCascade(Article article,
 			Articlecontent content, HashSet<Articlesubject> subjects) {
 		// TODO Auto-generated method stub
-
+		
 			article.setArticlesubjects(subjects);
 			article.setArticlecontent(content);
 			content.setArticle(article);
 			for(Articlesubject subject : subjects)
 			{
 				subject.setArticle(article);
-				super.addObject(subject);
+				//super.addObject(subject);
 			}
 			super.addObject(article);
 			super.addObject(content);
+			for(Articlesubject subject : subjects)
+			{
+				super.addObject(subject);
+			}
 
 	}
 
