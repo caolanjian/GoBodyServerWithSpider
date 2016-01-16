@@ -23,7 +23,9 @@ public class Test {
 		
 		SpiderTask spiderTask = (SpiderTask)ac.getBean("spiderTask");
 		Timer timer = new Timer();
+
 		long period = 1000 * 60 * 60 * 5;
 		timer.schedule(spiderTask, 0, period);
+
 	}
 }
