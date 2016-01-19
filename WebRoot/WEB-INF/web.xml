@@ -6,6 +6,8 @@
 	<welcome-file-list>
     	<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
+	
+	<distributable /> 
   
 	<!-- log4j配置文件 -->
 <!-- 	<context-param>
@@ -101,7 +103,7 @@
 	</filter-mapping>
 	
 	<!-- Proxool Monitoring -->
-	<servlet>
+ 	<servlet>
 		<servlet-name>Admin</servlet-name>
 		<servlet-class>org.logicalcobwebs.proxool.admin.servlet.AdminServlet</servlet-class>
 	</servlet>
@@ -116,7 +118,7 @@
 		<servlet-class>com.clj.web.servlet.SpiderServlet</servlet-class>
 		<init-param>
 		    <param-name>runSpider</param-name>
-		    <param-value>1</param-value>
+		    <param-value>0</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

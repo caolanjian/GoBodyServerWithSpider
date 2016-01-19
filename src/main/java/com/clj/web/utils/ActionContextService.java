@@ -8,6 +8,10 @@ package com.clj.web.utils;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionContext;
 
 public class ActionContextService {
@@ -77,8 +81,8 @@ public class ActionContextService {
 	 */
 	public void setParaToRequest(String key, Object obj)
 	{
-		
-		
+		/*HttpServletRequest request = (HttpServletRequest)context.get(ServletActionContext.HTTP_REQUEST);
+		request.setAttribute(key, obj);*/
 	}
 	
 	/*

@@ -14,7 +14,7 @@ public class SpiderTask extends TimerTask{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		FileLogHelper.writeLog("#############Spider Restart##############");
+		//FileLogHelper.writeLog("#############Spider Restart##############");
 
 		try {
 			spiderHolder.stopSpider();

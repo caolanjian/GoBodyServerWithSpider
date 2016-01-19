@@ -28,6 +28,8 @@
 	    <property name="maxIdleTime" value="${hibernate.connection.maxIdleTime}"/>  
 	    <property name="acquireIncrement" value="${hibernate.connection.acquireIncrement}"/>   
 	    <property name="idleConnectionTestPeriod" value="${hibernate.connection.idleConnectionTestPeriod}"/>
+        <property name="testConnectionOnCheckin" value="true" />  
+        <property name="testConnectionOnCheckout" value="true" /> 
 	</bean>
 	
 	<bean id="sessionFactory"
@@ -55,6 +57,7 @@
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
 				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.autoReconnect">true</prop>
 				<prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
 				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
 				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>

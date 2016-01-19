@@ -70,8 +70,8 @@ public class ResourceAction {
 			}
 			
 			returnedString  = "success";
+
 			actionContextService.setParaToSession("articleContent", article);
-			actionContextService.setParaToSession("test", "test");
 			System.out.println(article.size());
 		}
 		else

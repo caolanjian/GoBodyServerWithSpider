@@ -68,7 +68,7 @@ public class ListAction {
 				art.setImg3(imgUrl3);
 			}
 		}
-		
+
 		actionContextService.setParaToSession("articleList", articleList);
 		actionContextService.setParaToSession("pageCount", pageCount);
 		actionContextService.setParaToSession("itemCount", itemCount);
@@ -124,8 +124,10 @@ public class ListAction {
 			}
 
 		}
+
 		actionContextService.setParaToSession("items", articleList.size());
 		actionContextService.setParaToSession("articleList", articleList);
+		
 		return "successXml";
 	}
 }

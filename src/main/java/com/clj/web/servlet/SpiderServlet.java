@@ -18,7 +18,7 @@ public class SpiderServlet extends HttpServlet{
 		// TODO Auto-generated method stub
 		
 		String runSpider = getServletConfig().getServletContext().getInitParameter("runSpider");
-		FileLogHelper.writeLog("SpiderServlet Init");
+		//FileLogHelper.writeLog("SpiderServlet Init");
 		if(!"0".equals(runSpider))
 		{
 			//启动Spider
@@ -26,7 +26,7 @@ public class SpiderServlet extends HttpServlet{
 			long period = 1000 * 60 * 60 * 12;
 			timer.schedule(spiderTask, 0, period);
 			
-			FileLogHelper.writeLog("Spider Run");
+			//FileLogHelper.writeLog("Spider Run");
 		}
 		super.init();
 	}
