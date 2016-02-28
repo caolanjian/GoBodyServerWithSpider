@@ -17,5 +17,5 @@ public interface ArticleServiceInter extends BaseServiceInter {
 	
 	public void saveArticleAndContentAndSubjectCascade(Article article, Articlecontent content, HashSet<Articlesubject> subjects);
 	
-	public List<Article> queryArticleBySubjectAndLastPublishDate(long lastPublishDate, String subject);
+	public List<Article> queryArticleBySubjectAndLastPublishDate(long lastPublishDate, String subject, String method, int size);
 }

@@ -83,7 +83,10 @@ public class ListAction {
 		ActionContextService actionContextService = new ActionContextService(ActionContext.getContext());
 		String lastPublishDateStr = actionContextService.getStringParaFormContext("lastPublishDate");
 		String subject = actionContextService.getStringParaFormContext("subject");
+		String method = actionContextService.getStringParaFormContext("method");
+		String sizeStr = actionContextService.getStringParaFormContext("size");
 		long lastPublishDate = 0;
+		int size = 6;
 		System.out.println("Try to get lastPublishDate");
 		if(lastPublishDateStr != null)
 		{
@@ -94,10 +97,20 @@ public class ListAction {
 		{
 			subject = "fitness";
 		}
+		if(method == null)
+		{
+			method = "above";
+		}
+		System.out.println(method);
+		if(sizeStr != null)
+		{
+			size = Integer.parseInt(sizeStr);
+		}
+		System.out.println(size);
 		System.out.println(subject);
 		String subjectInDB = resources.getChannelIndexMap().get(subject);
 		System.out.println(subjectInDB);
-		articleList = articleService.queryArticleBySubjectAndLastPublishDate(lastPublishDate, subjectInDB);
+		articleList = articleService.queryArticleBySubjectAndLastPublishDate(lastPublishDate, subjectInDB, method, size);
 		
 		for(Article art : articleList)
 		{

@@ -85,12 +85,26 @@ public class ArticleServiceBean extends BaseServiceBean implements ArticleServic
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Article> queryArticleBySubjectAndLastPublishDate(
-			long lastPublishDate, String subject) {
+			long lastPublishDate, String subject, String method, int size) {
 		// TODO Auto-generated method stub
 		List<Article> articleList = new ArrayList<Article>();
 		List<Article> queryList = null;
-		String hql = "from Article as a inner join fetch a.articlesubjects as s where a.createtime>? and s.subject.subjectname=? order by createtime asc";
-		queryList = (List<Article>)super.queryByPage(hql, 0, 6, lastPublishDate, subject);
+		if("latest".equals(method))
+		{
+			String hql = "from Article as a inner join fetch a.articlesubjects as s where s.subject.subjectname=? order by createtime desc";
+			queryList = (List<Article>)super.queryByPage(hql, 0, size, subject);
+		}
+		else if("above".equals(method))
+		{
+			String hql = "from Article as a inner join fetch a.articlesubjects as s where a.createtime>? and s.subject.subjectname=? order by createtime asc";
+			queryList = (List<Article>)super.queryByPage(hql, 0, size, lastPublishDate, subject);
+		}
+		else if("below".equals(method))
+		{
+			String hql = "from Article as a inner join fetch a.articlesubjects as s where a.createtime<? and s.subject.subjectname=? order by createtime desc";
+			queryList = (List<Article>)super.queryByPage(hql, 0, size, lastPublishDate, subject);
+		}
+		
 		if(queryList != null)
 		{
 			articleList.addAll(queryList);
