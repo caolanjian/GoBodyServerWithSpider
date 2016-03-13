@@ -40,6 +40,9 @@
         <property name="createtime" type="java.lang.Long">
             <column name="createtime" not-null="true" />
         </property>
+        <property name="formattime" type="java.lang.Long">
+            <column name="formattime" not-null="true" />
+        </property>
         <set name="userfavorites" inverse="true">
             <key>
                 <column name="articleid" not-null="true" />

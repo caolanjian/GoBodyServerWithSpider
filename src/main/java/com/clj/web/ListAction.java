@@ -67,6 +67,7 @@ public class ListAction {
 				String imgUrl3 = resources.getAPACHE_IMG_SERVER_IP() + art.getImg3();
 				art.setImg3(imgUrl3);
 			}
+			System.out.println(art.getArticleid() + ":" + art.getFormattime());
 		}
 
 		actionContextService.setParaToSession("articleList", articleList);

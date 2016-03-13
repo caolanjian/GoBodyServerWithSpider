@@ -13,7 +13,7 @@
         <many-to-one name="subject" class="com.clj.domain.Subject" fetch="select">
             <column name="subjectid" not-null="true" />
         </many-to-one>
-        <many-to-one name="article" class="com.clj.domain.Article" fetch="select">
+        <many-to-one name="article" class="com.clj.domain.Article" fetch="select" cascade="save-update">
             <column name="articleid" not-null="true" />
         </many-to-one>
     </class>

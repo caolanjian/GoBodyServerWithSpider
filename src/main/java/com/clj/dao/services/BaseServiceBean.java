@@ -14,13 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.clj.dao.interfaces.BaseServiceInter;
 
-/**
- * 
- * @author a
- * <tx:annoation-driven />ֻ����Һ�������ͬ��Ӧ�������ļ��ж����bean�����@Transactionalע��
- * ������Ƚ�BaseServiceBean����Spring������BaseServiceBean�޷�ʹ�����Ҳ�޷���Springע��Session
- */
-
 @Service
 @Transactional(propagation=Propagation.REQUIRED , readOnly=true)
 public class BaseServiceBean implements BaseServiceInter {

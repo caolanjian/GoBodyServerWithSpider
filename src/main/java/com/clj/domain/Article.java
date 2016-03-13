@@ -22,6 +22,7 @@ public class Article implements java.io.Serializable {
 	private String img3;
 	private Integer supportnum;
 	private Long createtime;
+	private Long formattime;
 	private Set userfavorites = new HashSet(0);
 	private Set usercomments = new HashSet(0);
 	private Articlecontent articlecontent;
@@ -35,7 +36,7 @@ public class Article implements java.io.Serializable {
 
 	/** minimal constructor */
 	public Article(String articleid, String title, String url,
-			String abstract_, String author, Integer supportnum, Long createtime) {
+			String abstract_, String author, Integer supportnum, Long createtime, Long formattime) {
 		this.articleid = articleid;
 		this.title = title;
 		this.url = url;
@@ -43,12 +44,13 @@ public class Article implements java.io.Serializable {
 		this.author = author;
 		this.supportnum = supportnum;
 		this.createtime = createtime;
+		this.formattime = formattime;
 	}
 
 	/** full constructor */
 	public Article(String articleid, String title, String url,
 			String abstract_, String author, String img1, String img2,
-			String img3, Integer supportnum, Long createtime,
+			String img3, Integer supportnum, Long createtime, Long formattime,
 			Set userfavorites, Set usercomments, Articlecontent articlecontent,
 			Set articlesubjects) {
 		this.articleid = articleid;
@@ -61,6 +63,7 @@ public class Article implements java.io.Serializable {
 		this.img3 = img3;
 		this.supportnum = supportnum;
 		this.createtime = createtime;
+		this.formattime = formattime;
 		this.userfavorites = userfavorites;
 		this.usercomments = usercomments;
 		this.articlecontent = articlecontent;
@@ -71,6 +74,14 @@ public class Article implements java.io.Serializable {
 
 	public Integer getId() {
 		return this.id;
+	}
+
+	public Long getFormattime() {
+		return formattime;
+	}
+
+	public void setFormattime(Long formattime) {
+		this.formattime = formattime;
 	}
 
 	public void setId(Integer id) {

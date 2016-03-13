@@ -6,6 +6,7 @@ import java.util.List;
 import com.clj.domain.Article;
 import com.clj.domain.Articlecontent;
 import com.clj.domain.Articlesubject;
+import com.clj.dao.interfaces.BaseServiceInter;
 
 public interface ArticleServiceInter extends BaseServiceInter {
 

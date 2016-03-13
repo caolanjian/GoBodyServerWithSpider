@@ -9,6 +9,7 @@
   </head>
   
   <body>
+  <h1>test</h1>
   		<div class="itemList">
   			<c:forEach var="articleItem" items="${session.articleList}">
   			
@@ -21,12 +22,21 @@
 					  
 				      <div class="desc_title">
 				    		<span>
-				    			<a href="${articleItem.url }">${articleItem.title }</a>
+				    			<a href="${articleItem.url }">
+					    			<c:choose>
+					    				<c:when test="${articleItem.formattime==0}">
+					    					<font color="red" size="3">${articleItem.title }</font>
+					    				</c:when>
+					    				<c:otherwise>
+					    					<font color="black" size="2">${articleItem.title }</font>
+					    				</c:otherwise>
+					    			</c:choose>
+				    			</a>
 				    		</span>
 				      </div>	   
 				           
 					  <div class="desc_time">
-					  		<span>TimeStamp: </span>${articleItem.createtime }
+					  		<span>TimeStamp: </span>${articleItem.formattime }<font color="red"> and ${articleItem.formattime}</font>
 					  </div>
 					  
 					  <div class="desc_info">		     
@@ -46,6 +56,8 @@
 						 </div>
 					</div>
 				</div>
+				<h1> </h1>
+				<hr border="1" color="blue"/>
   			</c:forEach>
   		
   		</div>
