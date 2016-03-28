@@ -13,7 +13,7 @@
         <property name="subjectname" type="java.lang.String">
             <column name="subjectname" not-null="true" />
         </property>
-        <set name="articlesubjects" inverse="true">
+        <set name="articlesubjects" inverse="true" cascade="all">
             <key>
                 <column name="subjectid" not-null="true" />
             </key>

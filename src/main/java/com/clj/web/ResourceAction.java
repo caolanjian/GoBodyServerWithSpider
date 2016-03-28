@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.clj.dao.interfaces.ArticleServiceInter;
+import com.clj.dao.interfaces.ArticlecontentServiceInter;
 import com.clj.dao.services.ArticleServiceBean;
 import com.clj.domain.Articlecontent;
 import com.clj.domain.ContentLine;
@@ -23,6 +24,7 @@ public class ResourceAction {
 
 	@Resource private ArticleServiceInter articleService;
 	@Resource private Resources resources;
+	@Resource private ArticlecontentServiceInter articleContentService;
 	
 	public String getArticleContent()
 	{
@@ -31,7 +33,7 @@ public class ResourceAction {
 		
 		ActionContextService actionContextService = new ActionContextService(ActionContext.getContext());
 		String articleId = actionContextService.getStringParaFormContext("articleId");
-		
+		String edit = actionContextService.getStringParaFormContext("edit");
 		
 		//Articlecontent articleContent = (Articlecontent)hibernateUtil.getSingleObject(Articlecontent.class, articleId);
 		String hql = "from Articlecontent where article.articleid=?";
@@ -41,6 +43,7 @@ public class ResourceAction {
 		if(articleContent != null)
 		{
 			String content = articleContent.getContent();
+			StringBuffer formatContent = new StringBuffer("");
 			String[] contentList = content.split("\n");
 			System.out.println(contentList.length);
 			List<ContentLine> article = new ArrayList<ContentLine>();
@@ -53,25 +56,44 @@ public class ResourceAction {
 					ContentLine cl = new ContentLine("img", 
 													url.substring(url.lastIndexOf(".")+1),
 													url);
+					//System.out.println(line);
+					formatContent.append(line).append("\n").append("\n");
 					article.add(cl);
 				}
 				else if(line.indexOf("<iframe>")!=-1)
 				{
 					String url = line.substring(line.indexOf("<iframe>") + "<iframe>".length(), line.indexOf("</iframe>"));
 					ContentLine cl = new ContentLine("iframe","", url);
+					//System.out.println(line);
+					formatContent.append(line).append("\n").append("\n");
 					article.add(cl);
 				}
 				else
 				{
-					ContentLine cl = new ContentLine("text","", line);
-					article.add(cl);
+					if(!"".equals(line.trim()))
+					{
+						ContentLine cl = new ContentLine("text","", line);
+						//System.out.println(line);
+						formatContent.append(line).append("\n").append("\n");
+						article.add(cl);
+					}
 				}
-				System.out.println(line);
+				//System.out.println(line);
 			}
 			
-			returnedString  = "success";
+			if(edit!=null && "true".equals(edit))
+			{
+				returnedString  = "successWithEdit";
+			}
+			else
+			{
+				returnedString  = "success";
+			}
+			
 
 			actionContextService.setParaToSession("articleContent", article);
+			actionContextService.setParaToSession("contentStr", formatContent.toString());
+			actionContextService.setParaToSession("articleid", articleId);
 			System.out.println(article.size());
 		}
 		else
@@ -80,5 +102,35 @@ public class ResourceAction {
 		}
 		
 		return returnedString;
+	}
+	
+	public String updateArticleContent()
+	{
+		String returnedString = "editSuccess";
+		
+		ActionContextService actionContextService = new ActionContextService(ActionContext.getContext());
+		String articleid = actionContextService.getStringParaFormContext("articleid");
+		String formatContent = actionContextService.getStringParaFormContext("content");
+		
+		System.out.println("update " + articleid);
+		System.out.println(formatContent);
+		
+		articleContentService.updateContentandArticleCascade(articleid, formatContent);
+		
+		return returnedString;
+	}
+	
+	public String deleteArticle()
+	{
+		ActionContextService actionContextService = new ActionContextService(ActionContext.getContext());
+		String articleid = actionContextService.getStringParaFormContext("articleid");
+		
+		System.out.println("delete " + articleid);
+		
+		if(articleid!=null && !articleid.equals(""))
+		{
+			articleService.deleteArticle(articleid);
+		}
+		return "editSuccess";
 	}
 }

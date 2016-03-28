@@ -10,7 +10,7 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <one-to-one name="article" class="com.clj.domain.Article"></one-to-one>
+        <one-to-one name="article" class="com.clj.domain.Article" cascade="all"></one-to-one>
         <property name="content" type="java.lang.String">
             <column name="content" length="65535" />
         </property>

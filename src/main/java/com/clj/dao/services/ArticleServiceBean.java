@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -85,24 +86,36 @@ public class ArticleServiceBean extends BaseServiceBean implements ArticleServic
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Article> queryArticleBySubjectAndLastPublishDate(
-			long lastPublishDate, String subject, String method, int size) {
+			long lastPublishDate, ArrayList<String> subjects, String method, int size) {
 		// TODO Auto-generated method stub
 		List<Article> articleList = new ArrayList<Article>();
 		List<Article> queryList = null;
 		if("latest".equals(method))
 		{
-			String hql = "from Article as a inner join fetch a.articlesubjects as s where s.subject.subjectname=? order by createtime desc";
-			queryList = (List<Article>)super.queryByPage(hql, 0, size, subject);
+			//String hql = "from Article as a inner join fetch a.articlesubjects as s where s.subject.subjectname=? order by createtime desc";
+			String hql = "from Article as a inner join fetch a.articlesubjects as s where s.subject.subjectname in (:subjectname) order by createtime desc";
+			//queryList = (List<Article>)super.queryByPage(hql, 0, size, subjects);
+			Query query = sessionFactory.getCurrentSession().createQuery(hql);
+			query.setParameterList("subjectname", subjects); 
+			queryList  = (List<Article>)query.setFirstResult(0).setMaxResults(size).list();
 		}
 		else if("above".equals(method))
 		{
-			String hql = "from Article as a inner join fetch a.articlesubjects as s where a.createtime>? and s.subject.subjectname=? order by createtime asc";
-			queryList = (List<Article>)super.queryByPage(hql, 0, size, lastPublishDate, subject);
+			String hql = "from Article as a inner join fetch a.articlesubjects as s where a.createtime>:createtime and s.subject.subjectname in (:subjectname) order by createtime asc";
+			//queryList = (List<Article>)super.queryByPage(hql, 0, size, lastPublishDate, subjects);
+			Query query = sessionFactory.getCurrentSession().createQuery(hql);
+			query.setParameter("createtime", lastPublishDate);
+			query.setParameterList("subjectname", subjects); 
+			queryList  = (List<Article>)query.setFirstResult(0).setMaxResults(size).list();
 		}
 		else if("below".equals(method))
 		{
-			String hql = "from Article as a inner join fetch a.articlesubjects as s where a.createtime<? and s.subject.subjectname=? order by createtime desc";
-			queryList = (List<Article>)super.queryByPage(hql, 0, size, lastPublishDate, subject);
+			String hql = "from Article as a inner join fetch a.articlesubjects as s where a.createtime<:createtime and s.subject.subjectname in (:subjectname) order by createtime desc";
+			//queryList = (List<Article>)super.queryByPage(hql, 0, size, lastPublishDate, subjects);
+			Query query = sessionFactory.getCurrentSession().createQuery(hql);
+			query.setParameter("createtime", lastPublishDate);
+			query.setParameterList("subjectname", subjects); 
+			queryList  = (List<Article>)query.setFirstResult(0).setMaxResults(size).list();
 		}
 		
 		if(queryList != null)
@@ -113,4 +126,55 @@ public class ArticleServiceBean extends BaseServiceBean implements ArticleServic
 		return articleList;
 	}
 
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED , readOnly=false)
+	public void deleteArticle(String articleId) {
+		// TODO Auto-generated method stub
+		String hql = "from Article as a where a.articleid=?";
+		Article article = (Article)(super.queryBySql(hql, articleId).get(0));
+		
+		super.deleteObject(article);
+	}
+
+	@Override
+	public List<Article> queryArticleBySubjectAndLastFormatDate(
+			long lastFormatDate, ArrayList<String> subjects, String method, int size) {
+		// TODO Auto-generated method stub
+		List<Article> articleList = new ArrayList<Article>();
+		List<Article> queryList = null;
+		if("latest".equals(method))
+		{
+			String hql = "from Article as a inner join fetch a.articlesubjects as s where s.subject.subjectname in (:subjectname) and a.formattime!=0 order by formattime desc";
+			//queryList = (List<Article>)super.queryByPage(hql, 0, size, subjects);
+			Query query = sessionFactory.getCurrentSession().createQuery(hql);
+			query.setParameterList("subjectname", subjects); 
+			queryList  = (List<Article>)query.setFirstResult(0).setMaxResults(size).list();
+		}
+		else if("above".equals(method))
+		{
+			String hql = "from Article as a inner join fetch a.articlesubjects as s where a.formattime>:formattime and a.formattime!=0 and s.subject.subjectname in (:subjectname) order by formattime asc";
+			//queryList = (List<Article>)super.queryByPage(hql, 0, size, lastFormatDate, subjects);
+			Query query = sessionFactory.getCurrentSession().createQuery(hql);
+			query.setParameter("formattime", lastFormatDate);
+			query.setParameterList("subjectname", subjects); 
+			queryList  = (List<Article>)query.setFirstResult(0).setMaxResults(size).list();
+		}
+		else if("below".equals(method))
+		{
+			String hql = "from Article as a inner join fetch a.articlesubjects as s where a.formattime<:formattime and a.formattime!=0 and s.subject.subjectname in (:subjectname) order by formattime desc";
+			//queryList = (List<Article>)super.queryByPage(hql, 0, size, lastFormatDate, subjects);
+			Query query = sessionFactory.getCurrentSession().createQuery(hql);
+			query.setParameter("formattime", lastFormatDate);
+			query.setParameterList("subjectname", subjects); 
+			queryList  = (List<Article>)query.setFirstResult(0).setMaxResults(size).list();
+		}
+		
+		if(queryList != null)
+		{
+			articleList.addAll(queryList);
+		}
+		
+		return articleList;
+	}
+	
 }

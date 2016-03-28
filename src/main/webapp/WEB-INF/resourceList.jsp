@@ -6,6 +6,7 @@
 <html>
   <head>
     <title>My JSP 'resourceList.jsp' starting page</title>
+
   </head>
   
   <body>
@@ -14,19 +15,29 @@
   			
   				<div class="desc">
 					  <div class="desc_pic">
-					  		<a href="${articleItem.url }">
+					  		<a href="${articleItem.url}&edit=true">
 					  			<img src="${articleItem.img1 }" width="175" height="116" alt="${articleItem.title }"/>
 					  		</a>
 					  </div>
 					  
 				      <div class="desc_title">
 				    		<span>
-				    			<a href="${articleItem.url }">${articleItem.title }</a>
+				    			<a href="${articleItem.url }&edit=true">
+					    			<c:choose>
+					    				<c:when test="${articleItem.formattime==0}">
+					    					<font color="red" size="3">${articleItem.title }</font>
+					    				</c:when>
+					    				<c:otherwise>
+					    					<font color="black" size="2">${articleItem.title }</font>
+					    				</c:otherwise>
+					    			</c:choose>
+				    			</a>
 				    		</span>
 				      </div>	   
 				           
 					  <div class="desc_time">
-					  		<span>TimeStamp: </span>${articleItem.createtime }
+					  		<span>CreateTime: </span>${articleItem.createtime }
+					  		<span>FormatTime: </span><font color="red">${articleItem.formattime}</font>
 					  </div>
 					  
 					  <div class="desc_info">		     
@@ -36,16 +47,17 @@
 					     
 						 	 <div class="desc_info_addi">
 						   			<div class="com_num">
-						   				<a href="${articleItem.url }">阅读(94)</a>
+						   				<a href="${articleItem.url }&edit=true">阅读(94)</a>
 						   					┆作者：${articleItem.author }
 						   			</div>			   
 						   	
 						  	 <div class="detail">
-						  			<a href="${articleItem.url }">查看全文>></a>
+						  			<a href="${articleItem.url }&edit=true">查看全文>></a>
 						  	 </div>
 						 </div>
 					</div>
 				</div>
+				<hr border="1" color="blue"/>
   			</c:forEach>
   		
   		</div>
@@ -60,9 +72,9 @@
 				<a href='http://caolanjian.6655.la:46664/GoBodyServerTest/List!getList.action?pageNum=5'>5</a>
 				<a href='http://caolanjian.6655.la:46664/GoBodyServerTest/List!getList.action?pageNum=6'>6</a>
 				<a href='http://caolanjian.6655.la:46664/GoBodyServerTest/List!getList.action?pageNum=7'>7</a>
-				<a class='nextPage' href='http://caolanjian.6655.la:46664/GoBodyServerTest/List!getList.action?pageNum=2'>下页</a> 
+				<a class='nextPage' href='http://caolanjian.6655.la:46664/GoBodyServerTest/List!getList.action?pageNum=${session.pageNum + 1}'>下页</a> 
 				<a class='endPage' href='http://caolanjian.6655.la:46664/GoBodyServerTest/List!getList.action?pageNum=${session.pageCount } '>末页</a> 
 		</div>
-</div>
+	</div>
   </body>
 </html>

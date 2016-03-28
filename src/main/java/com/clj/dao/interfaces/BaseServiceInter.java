@@ -13,4 +13,5 @@ public interface BaseServiceInter {
 	public List<?> queryByPage(final String hql, final int offset, final int pagesize, Object... values);
 	public List<?> queryBySql(final String sql, Map parasMap);
 	public List<?> queryBySql(final String sql, final Object... parameters);
+	public void executeBySQL(final String sql, final Object... parameters);
 }

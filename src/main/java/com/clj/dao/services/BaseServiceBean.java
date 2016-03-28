@@ -1,6 +1,7 @@
 package com.clj.dao.services;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -35,7 +36,7 @@ public class BaseServiceBean implements BaseServiceInter {
 	@Transactional(propagation=Propagation.REQUIRED , readOnly=false)
 	public void deleteObject(Object obj) {
 		// TODO Auto-generated method stub
-		sessionFactory.getCurrentSession().delete(obj);;
+		sessionFactory.getCurrentSession().delete(obj);
 	}
 
 	@Override
@@ -59,7 +60,7 @@ public class BaseServiceBean implements BaseServiceInter {
 		List<Object> list = null;
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		for (int i = 0; i < values.length; i++) {  
-			 query.setParameter(i, values[i]);
+			query.setParameter(i, values[i]); 
 		}
 		if(0 == pagesize)
 		{
@@ -87,6 +88,17 @@ public class BaseServiceBean implements BaseServiceInter {
 		}
 		
 		return query.list();
+	}
+
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED , readOnly=false)
+	public void executeBySQL(String sql, Object... parameters) {
+		// TODO Auto-generated method stub
+		Query query = sessionFactory.getCurrentSession().createQuery(sql);
+		for (int i = 0; i < parameters.length; i++) {  
+			 query.setParameter(i, parameters[i]);
+		}
+		query.executeUpdate();
 	}
 
 }

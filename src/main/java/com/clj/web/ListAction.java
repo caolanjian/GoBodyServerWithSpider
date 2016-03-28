@@ -2,6 +2,7 @@ package com.clj.web;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -32,6 +33,12 @@ public class ListAction {
 		
 		ActionContextService actionContextService = new ActionContextService(ActionContext.getContext());
 		String pageNumStr = actionContextService.getStringParaFormContext("pageNum");
+		String edit = actionContextService.getStringParaFormContext("edit");
+		if(edit==null)
+		{
+			edit="true";
+		}
+		String subject = actionContextService.getStringParaFormContext("subject");
 		System.out.println("Try to get pageNum");
 		int pageNum = 1;
 		if(pageNumStr != null)
@@ -40,9 +47,33 @@ public class ListAction {
 			pageNum = Integer.parseInt(pageNumStr);
 		}
 		
-		articleList = (List<Article>)articleService.queryByPage("from Article order by createtime desc", pageSize*(pageNum-1), pageSize);
+		if(subject!=null)
+		{
+			subject = resources.getChannelIndexMap().get(subject);
+		}
 		
-		
+		if(edit!=null && edit.equals("true"))
+		{
+			if(subject == null)
+			{
+				articleList = (List<Article>)articleService.queryByPage("from Article where formattime=0 order by createtime desc", pageSize*(pageNum-1), pageSize);
+			}
+			else
+			{
+				articleList = (List<Article>)articleService.queryByPage("from Article as a inner join fetch a.articlesubjects as s where a.formattime=0 and s.subject.subjectname=" + subject + " order by createtime desc", pageSize*(pageNum-1), pageSize);
+			}
+		}
+		else
+		{
+			if(subject == null)
+			{
+				articleList = (List<Article>)articleService.queryByPage("from Article order by createtime desc", pageSize*(pageNum-1), pageSize);
+			}
+			else
+			{
+				articleList = (List<Article>)articleService.queryByPage("from Article as a inner join fetch a.articlesubjects as s where s.subject.subjectname=" + subject + " order by createtime desc", pageSize*(pageNum-1), pageSize);
+			}
+		}
 		
 		for(Article art : articleList)
 		{
@@ -67,12 +98,12 @@ public class ListAction {
 				String imgUrl3 = resources.getAPACHE_IMG_SERVER_IP() + art.getImg3();
 				art.setImg3(imgUrl3);
 			}
-			System.out.println(art.getArticleid() + ":" + art.getFormattime());
 		}
 
 		actionContextService.setParaToSession("articleList", articleList);
 		actionContextService.setParaToSession("pageCount", pageCount);
 		actionContextService.setParaToSession("itemCount", itemCount);
+		actionContextService.setParaToSession("pageNum", pageNum);
 		return "success";
 	}
 	
@@ -94,9 +125,23 @@ public class ListAction {
 			System.out.println("lastPublishDate: " + lastPublishDateStr);
 			lastPublishDate = Long.parseLong(lastPublishDateStr);
 		}
+		
+		ArrayList<String> subjects = new ArrayList<String>();
 		if(subject == null)
 		{
-			subject = "fitness";
+			Set<String> subjectSet = resources.getChannelIndexMap().keySet();
+			for(String s : subjectSet)
+			{
+				subjects.add(resources.getChannelIndexMap().get(s));
+			}
+		}
+		else
+		{
+			String[] subjectSet = subject.split("\\|");
+			for(String s : subjectSet)
+			{
+				subjects.add(resources.getChannelIndexMap().get(s));
+			}
 		}
 		if(method == null)
 		{
@@ -109,9 +154,9 @@ public class ListAction {
 		}
 		System.out.println(size);
 		System.out.println(subject);
-		String subjectInDB = resources.getChannelIndexMap().get(subject);
-		System.out.println(subjectInDB);
-		articleList = articleService.queryArticleBySubjectAndLastPublishDate(lastPublishDate, subjectInDB, method, size);
+		//String subjectInDB = resources.getChannelIndexMap().get(subject);
+		//System.out.println(subjectInDB);
+		articleList = articleService.queryArticleBySubjectAndLastFormatDate(lastPublishDate, subjects, method, size);
 		
 		for(Article art : articleList)
 		{

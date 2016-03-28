@@ -35,7 +35,12 @@
 		
 		<action name="Resource" class="resourceAction">
 			<result name="success">/WEB-INF/resourcePage.jsp</result>
+			<result name="successWithEdit">/WEB-INF/resourcePageWithEdit.jsp</result>
 			<result name="failed">/index.jsp</result>
+ 			<result name="editSuccess" type="chain">
+ 				<param name="actionName">redirectList</param>
+ 				<param name="edit">true</param>
+ 			</result>
 			<interceptor-ref name="InterceptorStack"></interceptor-ref>
 		</action>
 		
@@ -43,6 +48,14 @@
 			<result name="success">/WEB-INF/resourceList.jsp</result>
 			<result name="successXml">/WEB-INF/resourceListXml.jsp</result>
 			<result name="failed">/index.jsp</result>
+			<interceptor-ref name="InterceptorStack"></interceptor-ref>
+		</action>
+		
+		<action name="redirectList" class="listAction" method="getList">
+			<result name="success">/WEB-INF/resourceList.jsp</result>
+			<result name="successXml">/WEB-INF/resourceListXml.jsp</result>
+			<result name="failed">/index.jsp</result>
+			<param name="edit">true</param>
 			<interceptor-ref name="InterceptorStack"></interceptor-ref>
 		</action>
 		

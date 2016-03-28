@@ -43,20 +43,20 @@
         <property name="formattime" type="java.lang.Long">
             <column name="formattime" not-null="true" />
         </property>
-        <set name="userfavorites" inverse="true">
+        <set name="userfavorites" inverse="true" cascade="all">
             <key>
                 <column name="articleid" not-null="true" />
             </key>
             <one-to-many class="com.clj.domain.Userfavorite" />
         </set>
-        <set name="usercomments" inverse="true">
+        <set name="usercomments" inverse="true" cascade="all">
             <key>
                 <column name="articleid" not-null="true" />
             </key>
             <one-to-many class="com.clj.domain.Usercomment" />
         </set>
-        <one-to-one name="articlecontent" class="com.clj.domain.Articlecontent"></one-to-one>
-        <set name="articlesubjects" inverse="true">
+        <one-to-one name="articlecontent" class="com.clj.domain.Articlecontent" cascade="all"></one-to-one>
+        <set name="articlesubjects" inverse="true" cascade="all">
             <key>
                 <column name="articleid" not-null="true" />
             </key>
